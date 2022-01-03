@@ -1,6 +1,6 @@
+import 'package:exp_app/providers/ui_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:exp_app/providers/ui_provider.dart';
 
 
 class CustomNavigationBar extends StatelessWidget {
@@ -8,13 +8,11 @@ class CustomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    final _readIndex = context.read<UIProvider>();
-    final _watchIndex = context.watch<UIProvider>();
-
+    final uiProvider = Provider.of<UIProvider>(context);
+    
     return BottomNavigationBar(
-      currentIndex: _watchIndex.indexMenu,
-      onTap: (int i)  => _readIndex.indexMenu = i,
+      currentIndex: uiProvider.bnbIndex,
+      onTap: (int i) => uiProvider.bnbIndex = i,
       elevation: 0.0,
       items: 
       const [
