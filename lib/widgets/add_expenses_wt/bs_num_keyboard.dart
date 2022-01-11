@@ -1,8 +1,10 @@
+import 'package:exp_app/models/combined_model.dart';
 import 'package:exp_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class BSNumKeyboard extends StatefulWidget {
-  const BSNumKeyboard({Key? key}) : super(key: key);
+  final CombinedModel cModel;
+  const BSNumKeyboard({Key? key, required this.cModel}) : super(key: key);
 
   @override
   _BSNumKeyboardState createState() => _BSNumKeyboardState();
@@ -10,7 +12,13 @@ class BSNumKeyboard extends StatefulWidget {
 
 class _BSNumKeyboardState extends State<BSNumKeyboard> {
   String import = '0.00';
- 
+  
+  @override
+  void initState() {
+    import = widget.cModel.amount.toStringAsFixed(2);
+    super.initState();
+    
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +53,18 @@ class _BSNumKeyboardState extends State<BSNumKeyboard> {
   _numPad(){
     if(import == '0.00') import = '';
 
+    _expenseChange(String amount){
+      if(amount == '') amount = '0.00';
+      widget.cModel.amount = double.parse(amount);
+    }
+
     _num(String _text, double _height){
       return GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: (){
           setState(() {
             import += _text;
+            widget.cModel.amount = double.parse(import);
           });
         },
         child: SizedBox(
@@ -121,12 +135,14 @@ class _BSNumKeyboardState extends State<BSNumKeyboard> {
                               setState(() {
                                 if(import.length > 0.0){
                                   import = import.substring(0, import.length - 1);
-                                }
+                                  _expenseChange(import);
+                                } 
                               });
                             },
                             onLongPress: (){
                               setState(() {
                                 import = '';
+                                _expenseChange(import);
                               });
                             },
                             child: SizedBox(
@@ -153,6 +169,7 @@ class _BSNumKeyboardState extends State<BSNumKeyboard> {
                             onTap: (){
                               setState(() {
                                 import = '0.00';
+                                _expenseChange(import);
                                 Navigator.pop(context);
                               });
                             },
@@ -168,6 +185,7 @@ class _BSNumKeyboardState extends State<BSNumKeyboard> {
                             onTap: (){
                               setState(() {
                                 if(import.length == 0.0) import = '0.00';
+                                _expenseChange(import);
                                 Navigator.pop(context);
                               });
                             },
