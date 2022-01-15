@@ -1,6 +1,8 @@
 
+// ignore_for_file: avoid_print
 import 'package:exp_app/models/combined_model.dart';
 import 'package:exp_app/utils/constants.dart';
+import 'package:exp_app/widgets/add_expenses_wt/bs_category.dart';
 import 'package:exp_app/widgets/add_expenses_wt/bs_num_keyboard.dart';
 import 'package:exp_app/widgets/add_expenses_wt/comment_box.dart';
 import 'package:exp_app/widgets/add_expenses_wt/date_picker.dart';
@@ -31,7 +33,7 @@ class AddExpenses extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   DatePicker(cModel: cModel),
-                  const Text('Seleccionar Categoría'),
+                  BSCategory(cModel: cModel),
                   CommentBox(cModel: cModel),
                   Expanded(
                     child: Center(
