@@ -10,13 +10,13 @@ String featuresModelToJson(FeaturesModel data) => json.encode(data.toJson());
 
 class FeaturesModel {
     FeaturesModel({
-        this.id = 0,
+        this.id,
         this.category = '',
-        this.color = '',
-        this.icon = '',
+        this.color = '#baf748',
+        this.icon = 'adb_rounded',
     });
 
-    int id;
+    int? id;
     String category;
     String color;
     String icon;

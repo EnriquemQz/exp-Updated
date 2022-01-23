@@ -1,13 +1,16 @@
+import 'package:exp_app/providers/expenses_provider.dart';
+import 'package:flutter/material.dart';
+
 import 'package:exp_app/pages/home_page.dart';
 import 'package:exp_app/providers/ui_provider.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(
   MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (_) => UIProvider())
+      ChangeNotifierProvider(create: (_) => UIProvider()),
+      ChangeNotifierProvider(create: (_) => ExpensesProvider()),
     ],
     child: const MyApp()
   )
@@ -41,6 +44,7 @@ class MyApp extends StatelessWidget {
         colorScheme: const ColorScheme.dark(
           primary: Colors.green
         ),
+        dividerColor: Colors.grey,
         scaffoldBackgroundColor: Colors.grey[900],
         primaryColorDark: Colors.grey[850],
       ),

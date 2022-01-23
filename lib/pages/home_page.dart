@@ -1,3 +1,4 @@
+import 'package:exp_app/providers/expenses_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -26,10 +27,14 @@ class _HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final uiProvider = Provider.of<UIProvider>(context);
+    // final exProvider = Provider.of<ExpensesProvider>(context, listen: false);
+    final exProvider = context.read<ExpensesProvider>();
+
     final currentIndex = uiProvider.bnbIndex;
 
     switch(currentIndex){
       case 0: 
+        exProvider.getAllFeatures();
         return const BalancePage();
       case 1:
         return const ChartsPage();

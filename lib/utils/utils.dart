@@ -13,7 +13,6 @@ extension ColorExtension on String {
   }
 }
 
-
 extension IconExtension on String {
   toIcon(){
     return IconList().iconMap[this];

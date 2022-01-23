@@ -4,7 +4,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Constants {
-  
+
+  static bottomSheet(){
+    return const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(
+        top: Radius.circular(25.0)
+      )
+    );
+  }
+
+ 
   static sheetBoxDecoration(Color color){
     return BoxDecoration(
       color: color,
