@@ -15,7 +15,7 @@ class PageAnimationRoutes extends PageRouteBuilder {
   )
   
   :super(
-    transitionDuration: const Duration(milliseconds: 400),
+    transitionDuration: const Duration(milliseconds: 500),
     transitionsBuilder: 
     (
       BuildContext context,

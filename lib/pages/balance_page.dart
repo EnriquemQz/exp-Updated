@@ -41,7 +41,7 @@ class _BalancePageState extends State<BalancePage> {
 
   @override
   Widget build(BuildContext context) {
-
+    
     return Scaffold(
       floatingActionButton: const CustomFAB(),
       body: CustomScrollView(
