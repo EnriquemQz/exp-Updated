@@ -1,4 +1,5 @@
 import 'package:exp_app/utils/icon_list.dart';
+export 'package:exp_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 extension ColorExtension on String {

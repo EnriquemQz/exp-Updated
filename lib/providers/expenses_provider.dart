@@ -1,16 +1,18 @@
 
+import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'dart:convert';
+
 import 'package:exp_app/models/combined_model.dart';
 import 'package:exp_app/models/expenses_model.dart';
 import 'package:exp_app/models/features_model.dart';
 import 'package:exp_app/providers/db_expenses.dart';
 import 'package:exp_app/providers/db_features.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 class ExpensesProvider extends ChangeNotifier {
-  List<FeaturesModel> fList = [];
-  List<ExpensesModel> eList = [];
-  List<CombinedModel> cList = [];
+  List<FeaturesModel> fList = []; 
+  List<ExpensesModel> eList = [];  
+  List<CombinedModel> cList = [];  
  
   /* 
     ---- Functions to insert ----
@@ -116,6 +118,33 @@ class ExpensesProvider extends ChangeNotifier {
     return cList = [..._cModel];
   }
 
+  List<CombinedModel> get grouptemsList {
+    List<CombinedModel> _cModel = [];
 
+    for(var x in eList){
+      for(var y in fList){
+        if(x.link == y.id){
+
+          double _amount = eList.where((e) => e.link == y.id)
+            .fold(0.0, (a, b) => a + b.expense);
+
+          _cModel.add(CombinedModel(
+            category: y.category,
+            color: y.color,
+            icon: y.icon,
+            amount: _amount,
+
+          ));
+        }
+      }
+    }
+    
+    var encode = _cModel.map((e) => jsonEncode(e));
+    var unique = encode.toSet();
+    var result = unique.map((e) => jsonDecode(e));
+    _cModel = result.map((e) => CombinedModel.fromJson(e)).toList();
+
+    return cList = [..._cModel];
+  }
 
 }
