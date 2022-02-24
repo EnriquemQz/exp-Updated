@@ -9,7 +9,6 @@ class MonthSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     final uiProvider = context.read<UIProvider>(); 
     int currentPage = context.watch<UIProvider>().selectedMonth; 
-    print(currentPage);
     
     PageController _controller;
 

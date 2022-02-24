@@ -1,5 +1,5 @@
 
-// ignore_for_file: avoid_print
+
 import 'package:exp_app/models/combined_model.dart';
 import 'package:exp_app/utils/constants.dart';
 import 'package:exp_app/widgets/add_expenses_wt/bs_category.dart';
@@ -15,15 +15,24 @@ class AddExpenses extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CombinedModel cModel = CombinedModel();
+    bool hasData = false;
+    final editCModel = 
+      ModalRoute.of(context)!.settings.arguments as CombinedModel?;
+
+      if(editCModel != null){
+        cModel = editCModel;
+        hasData = true;
+      }
+    
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Agregar Gasto'),
+        title: (hasData) ? const Text('Editar Gasto') : const Text('Agregar Gasto'),
         elevation: 0.0,
       ),
       body: Column(
         children: [
-          BSNumKeyboard(cModel: cModel),   // Modificar aqui tmb
+          BSNumKeyboard(cModel: cModel),  
           Expanded(
             child: Container(
               width: double.infinity,
@@ -38,7 +47,10 @@ class AddExpenses extends StatelessWidget {
                   CommentBox(cModel: cModel),
                   Expanded(
                     child: Center(
-                      child: SaveButton(cModel: cModel)
+                      child: SaveButton(
+                        cModel: cModel,
+                        hasData: hasData,
+                      )
                     )
                   ),
                 ],

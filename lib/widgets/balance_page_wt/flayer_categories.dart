@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:exp_app/providers/expenses_provider.dart';
 import 'package:exp_app/utils/utils.dart';
 
+
 class FlayerCategories extends StatelessWidget {
   const FlayerCategories({Key? key}) : super(key: key);
 
@@ -41,26 +42,35 @@ class FlayerCategories extends StatelessWidget {
               var item = gList[i];
               if(hasLimit == true) item = limitList[i];
               
-              return ListTile(
-                dense: true,
-                visualDensity: const VisualDensity(vertical: -4),
-                horizontalTitleGap: -10,
-                leading: Icon(
-                  item.icon.toIcon(),
-                  color: item.color.toColor(),
-                ),
-                title: Text(
-                  item.category,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.bold
+              return GestureDetector(
+                onTap: (){
+                  Navigator.pushNamed(
+                    context, 
+                    'cat_details',
+                    arguments: item
+                  );
+                },
+                child: ListTile(
+                  dense: true,
+                  visualDensity: const VisualDensity(vertical: -4),
+                  horizontalTitleGap: -10,
+                  leading: Icon(
+                    item.icon.toIcon(),
+                    color: item.color.toColor(),
                   ),
+                  title: Text(
+                    item.category,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 12.0,
+                      fontWeight: FontWeight.bold
+                    ),
+                  ),
+                  // trailing: Text(
+                  //   getAmountFormat(item.amount)
+                  // ),
                 ),
-                // trailing: Text(
-                //   getAmountFormat(item.amount)
-                // ),
               );
             },
           ),

@@ -1,4 +1,5 @@
 
+import 'package:exp_app/models/entries_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:convert';
@@ -9,10 +10,13 @@ import 'package:exp_app/models/features_model.dart';
 import 'package:exp_app/providers/db_expenses.dart';
 import 'package:exp_app/providers/db_features.dart';
 
+
 class ExpensesProvider extends ChangeNotifier {
-  List<FeaturesModel> fList = []; 
-  List<ExpensesModel> eList = [];  
-  List<CombinedModel> cList = [];  
+  List<FeaturesModel> fList = [];   // features
+  List<ExpensesModel> eList = [];   // expenses
+  List<CombinedModel> cList = []; 
+  List<EntriesModel> etList = [];
+
  
   /* 
     ---- Functions to insert ----
@@ -34,7 +38,21 @@ class ExpensesProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  
+  addNewEntrie(CombinedModel cModel) async {
+    var entries = EntriesModel(
+      year: cModel.year,
+      month: cModel.month,
+      day: cModel.day,
+      comment: cModel.comment,
+      entries: cModel.amount
+    );
+
+    final id = await DBExpenses.db.addEntries(entries);
+    entries.id = id;
+    etList.add(entries);
+    notifyListeners();
+  }
+
   addNewFeature(FeaturesModel newFeature) async {
     final id = await DBFeatures.db.addNewFeature(newFeature);
     newFeature.id = id;
@@ -49,6 +67,12 @@ class ExpensesProvider extends ChangeNotifier {
   getExpensesByDate(int month, int year) async {
     final response = await DBExpenses.db.getExpenseByDate(month, year);
     eList = [...response];
+    notifyListeners();
+  }
+
+  getEntriesByDate(int month, int year) async {
+    final response = await DBExpenses.db.getEntriesByDate(month, year);
+    etList = [...response];
     notifyListeners();
   }
 
@@ -106,6 +130,7 @@ class ExpensesProvider extends ChangeNotifier {
             color: y.color,
             icon: y.icon,
             id: x.id,
+            link: x.link,
             amount: x.expense,
             comment: x.comment,
             year: x.year,

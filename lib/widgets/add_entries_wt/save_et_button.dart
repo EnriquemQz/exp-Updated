@@ -7,14 +7,9 @@ import 'package:provider/provider.dart';
 
 import '../../providers/expenses_provider.dart';
 
-class SaveButton extends StatelessWidget {
+class SaveEtButton extends StatelessWidget {
   final CombinedModel cModel;
-  final bool hasData;
-  const SaveButton({
-    Key? key, 
-    required this.cModel,
-    required this.hasData
-  }) : super(key: key);
+  const SaveEtButton({Key? key, required this.cModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,28 +19,20 @@ class SaveButton extends StatelessWidget {
     return GestureDetector(
       onTap: (){
 
-        if(cModel.amount != 0.00 && cModel.link != null){
-          (hasData)
-          ? exProvider.updateExpense(cModel)
-          : exProvider.addNewExpense(cModel);
-          
+        if(cModel.amount != 0.00){
+          exProvider.addNewEntrie(cModel);
           Fluttertoast.showToast(
-            msg: (hasData) ? 'Gasto editado':'Gasto agregado 👍',
+            msg: 'Ingreso agregado 👍',
             backgroundColor: Colors.green
           );
           uiProvider.bnbIndex = 0;
           Navigator.pop(context);
         } else if(cModel.amount == 0.0){
           Fluttertoast.showToast(
-            msg: 'No olvides agregar un gasto',
+            msg: 'No olvides agregar un ingreso',
             backgroundColor: Colors.red
           );
-        } else {
-          Fluttertoast.showToast(
-            msg: 'No olvides seleccionar una categoría',
-            backgroundColor: Colors.red
-          );
-        }
+        } 
         
         
       },
@@ -55,7 +42,7 @@ class SaveButton extends StatelessWidget {
         child: Constants.customButton(
          Colors.green, 
          Colors.white, 
-         (hasData) ? 'EDITAR' : 'GUARDAR'
+         'GUARDAR'
         ),
       )
     );

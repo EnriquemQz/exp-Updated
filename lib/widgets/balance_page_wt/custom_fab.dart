@@ -48,7 +48,7 @@ class CustomFAB extends StatelessWidget {
               widget: const AddEntries(),
               ejex: 0.8,
               ejey: 0.8        
-            )
+            ),
           );
         }
       )

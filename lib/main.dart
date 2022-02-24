@@ -1,3 +1,5 @@
+import 'package:exp_app/pages/add_expenses.dart';
+import 'package:exp_app/pages/categories_details.dart';
 import 'package:exp_app/providers/expenses_provider.dart';
 import 'package:flutter/material.dart';
 
@@ -50,7 +52,9 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: 'home',
       routes: {
-        'home' :       (_) => const HomePage(),
+        'home' : (_) => const HomePage(),
+        'add_expenses' : (_) => const AddExpenses(),
+        'cat_details' : (_) => const CategoriesDetails(),
       },
     );
   }
