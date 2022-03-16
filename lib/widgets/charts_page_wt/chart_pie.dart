@@ -76,7 +76,8 @@ class _ChartPieState extends State<ChartPie> {
           defaultRenderer: charts.ArcRendererConfig(
             arcWidth: 45,
             strokeWidthPx: 0.0,
-            arcRendererDecorators:[
+            arcRendererDecorators:
+            [
               charts.ArcLabelDecorator(
                 labelPosition: charts.ArcLabelPosition.outside,
                 labelPadding: 2,
@@ -101,12 +102,12 @@ class _ChartPieState extends State<ChartPie> {
                   setState(() {
                     _animate = false;
                     _index = model.selectedDatum[0].index!;
+
                     catIcon = model.selectedSeries[0]
                       .keyFn!(model.selectedDatum[0].index)
                       .toString();
                     catName = model.selectedSeries[0]
-                      .domainFn(model.selectedDatum[0].index)
-                      .toString();
+                      .domainFn(model.selectedDatum[0].index); 
                     catAmount = model.selectedSeries[0]
                       .measureFn(model.selectedDatum[0].index)
                       !.toDouble();
@@ -115,7 +116,7 @@ class _ChartPieState extends State<ChartPie> {
                       .toString().replaceFirst(RegExp(r'ff'),'',6);
                   });
                 }
-              }
+              },
             ),
           ],
         ),

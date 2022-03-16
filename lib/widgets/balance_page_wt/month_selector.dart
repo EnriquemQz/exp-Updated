@@ -14,7 +14,7 @@ class MonthSelector extends StatelessWidget {
 
     _controller = PageController(
       initialPage: currentPage,
-      viewportFraction: 0.4
+      viewportFraction: 0.4,
     );
 
     return SizedBox(

@@ -1,8 +1,10 @@
-
-import 'package:exp_app/widgets/charts_page_wt/chart_line.dart';
-import 'package:exp_app/widgets/charts_page_wt/chart_pie.dart';
-import 'package:exp_app/widgets/charts_page_wt/chart_scatterplot.dart';
+import 'package:exp_app/providers/ui_provider.dart';
+import 'package:exp_app/widgets/charts_page_wt/chart_selector.dart';
+import 'package:exp_app/widgets/charts_page_wt/chart_switch.dart';
+import 'package:exp_app/widgets/charts_page_wt/per_category_list.dart';
+import 'package:exp_app/widgets/charts_page_wt/per_day_list.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../utils/constants.dart';
 
@@ -11,10 +13,18 @@ class ChartsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentChart = context.watch<UIProvider>().selectedChart;
+    bool _isPerDay = false;
+
+    if(currentChart == 'Gráfico Lineal' 
+        || currentChart == 'Gráfico de dispersión'){
+          _isPerDay = true;
+        }
+
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColorDark,
       appBar: AppBar(
-        title: const Text('Gráfico'),
+        title: Text(currentChart),
         centerTitle: true,
         elevation: 0.0,
       ),
@@ -28,12 +38,12 @@ class ChartsPage extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: const [
-                    Text('Selector'),
+                    ChartSelector(),
                     Expanded(
                       // child: ChartLine()
                       // child: ChartPie()
-                      child: ChartScatterPlot(),
-                    )
+                      child: ChartSwitch(),
+                    ),
                   ],
                 ),
               ),
@@ -41,7 +51,7 @@ class ChartsPage extends StatelessWidget {
           ),
           SliverToBoxAdapter(
             child: Container(
-              padding: const EdgeInsets.only(top: 10.0),
+              // padding: const EdgeInsets.only(top: 10.0),
               height: 40.0,
               color: Theme.of(context).scaffoldBackgroundColor,
               child: Container(
@@ -51,7 +61,7 @@ class ChartsPage extends StatelessWidget {
               ),
             ),
           ),
-
+          (_isPerDay) ? const PerDayList() : const PerCategoryList()
         ],
       ),
     );
