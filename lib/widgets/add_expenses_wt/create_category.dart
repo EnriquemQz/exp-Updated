@@ -42,7 +42,8 @@ class _CreateCategoryState extends State<CreateCategory> {
     Iterable<FeaturesModel> contain;
 
       contain = fList.where((e) => 
-        e.category.toLowerCase() == widget.fModel.category.toLowerCase()
+        e.category.toLowerCase().replaceAll(' ', '') == 
+          widget.fModel.category.toLowerCase().replaceAll(' ', '')
       );
     
     _addCategory(){

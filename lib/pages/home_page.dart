@@ -1,3 +1,4 @@
+import 'package:exp_app/pages/setting_page.dart';
 import 'package:exp_app/providers/expenses_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -41,6 +42,8 @@ class _HomePage extends StatelessWidget {
         return const BalancePage();
       case 1:
         return const ChartsPage();
+      case 2:
+        return const SettingPage();
       default : 
         return const BalancePage();
     }
