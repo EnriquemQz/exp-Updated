@@ -94,7 +94,7 @@ class IconList {
     'local_car_wash_outlined'            : Icons.local_car_wash_outlined,
     'local_florist_outlined'             : Icons.local_florist_outlined,
     'sports_bar_outlined'                : Icons.sports_bar_outlined,
-    'home'                               : Icons.home
-
+    'home'                               : Icons.home,
+    'vaping_rooms_outlined'              :Icons.vaping_rooms_outlined
   };
 }

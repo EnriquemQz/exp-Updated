@@ -45,6 +45,10 @@ dependencies:
   percent_indicator: ^4.0.0
   charts_flutter: ^0.12.0
   shared_preferences: ^2.0.13
+  flutter_time_picker_spinner: ^2.0.0
+  flutter_local_notifications: ^9.4.0
+  timezone: ^0.8.0
+  flutter_native_timezone: ^2.0.0
 
 dev_dependencies:
   flutter_test:

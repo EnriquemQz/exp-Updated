@@ -115,14 +115,11 @@ class _CreateCategoryState extends State<CreateCategory> {
       }
     }
 
-    
-
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
           children: [
-
             Container(
               padding: EdgeInsets.only(bottom: viewInsets / 3),
               child: ListTile(

@@ -1,22 +1,28 @@
+import 'package:exp_app/providers/local_notifications.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:timezone/data/latest_all.dart' as tz;
+
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:exp_app/pages/add_expenses.dart';
 import 'package:exp_app/pages/categories_details.dart';
 import 'package:exp_app/pages/expenses_details.dart';
 import 'package:exp_app/providers/expenses_provider.dart';
 import 'package:exp_app/providers/shared_pref.dart';
 import 'package:exp_app/providers/theme_provider.dart';
-import 'package:flutter/material.dart';
-
 import 'package:exp_app/pages/home_page.dart';
 import 'package:exp_app/providers/ui_provider.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:provider/provider.dart';
 
 void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
-
+  
+  tz.initializeTimeZones();
   final prefs = UserPrefs();
+  final notifs = LocalNotifications();
+
   await prefs.initPrefs();
+  await notifs.initialize();
 
   runApp(
   MultiProvider(

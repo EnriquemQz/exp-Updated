@@ -14,6 +14,8 @@ class AddExpenses extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // var viewInsets = MediaQuery.of(context).viewInsets.bottom;
+
     CombinedModel cModel = CombinedModel();
     bool hasData = false;
     final editCModel = 
@@ -39,21 +41,24 @@ class AddExpenses extends StatelessWidget {
               decoration: Constants.sheetBoxDecoration(
                 Theme.of(context).primaryColorDark
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  DatePicker(cModel: cModel),
-                  BSCategory(cModel: cModel),
-                  CommentBox(cModel: cModel),
-                  Expanded(
-                    child: Center(
-                      child: SaveButton(
-                        cModel: cModel,
-                        hasData: hasData,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    DatePicker(cModel: cModel),
+                    BSCategory(cModel: cModel),
+                    CommentBox(cModel: cModel),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 80.0),
+                      child: Center(
+                        child: SaveButton(
+                          cModel: cModel,
+                          hasData: hasData,
+                        )
                       )
-                    )
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
             ),
           )

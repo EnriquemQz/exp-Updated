@@ -1,4 +1,5 @@
 import 'package:exp_app/widgets/setting_page_wt/dart_mode_switch.dart';
+import 'package:exp_app/widgets/setting_page_wt/time_picker.dart';
 import 'package:flutter/material.dart';
 
 class SettingPage extends StatelessWidget {
@@ -12,7 +13,10 @@ class SettingPage extends StatelessWidget {
       ),
       body: ListView(
         children: const [
-          DarkModeSwitch()
+          DarkModeSwitch(),
+          Divider(thickness: 2),
+          TimePicker(),
+          Divider(thickness: 2)
         ],
       ),
     );
